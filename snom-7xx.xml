@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <phone-settings>
+
+    <setting_server perm="R">http://{% $ANPROV_SIP_ADDRESS %}:8010/{mac}.xml</setting_server>
+
+    <language perm="RW">{% $snom_language %}</language>
+    <web_language perm="RW">{% $snom_language %}</web_language>
+    <date_us_format perm="RW">off</date_us_format>
+    <dialnumber_us_format perm="RW">off</dialnumber_us_format>
+    <timezone>{% $snom_timezone %}</timezone>
+    <tone_scheme>{% $snom_tone_scheme %}</tone_scheme>
+    
+    {% for user in ANPROV_USERS %}
+			{% if user.ANPROV_SUB_ID %}
+
+    <user_active idx="{% $user.ANPROV_SUB_ID xml %}" perm="RW">on</user_active>
+    <user_realname idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_DISPLAY_NAME xml %}</user_realname>
+    <user_name idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_AOR_USERNAME xml %}</user_name>
+    <user_pass idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_AUTH_PASSWORD xml %}</user_pass>
+    <user_pname idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_AUTH_USERNAME xml %}</user_pname>
+    {% if ANPROV_SIP_UDP_PORT %}
+    <user_host idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $ANPROV_SIP_ADDRESS %}:{% $ANPROV_SIP_UDP_PORT xml %}</user_host>
+    {% end %}
+		{% elif ANPROV_SIP_TCP_PORT %}
+	<user_host idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $ANPROV_SIP_ADDRESS %}:{% $ANPROV_SIP_TCP_PORT xml %}</user_host>
+	{% end %}
+
+    {% end %}
+			{% else %}
+			{% warning no sub-id set for account %}
+			{% end %}
+		{% end %}
+
+
+	<admin_mode_password perm="">{% $snom_admin_mode_pass %}</admin_mode_password> 
+    <http_user perm="">{% $snom_admin_user %}</http_user>
+    <http_pass perm="">{% $snom_admin_web_pass %}</http_pass>
+
+  </phone-settings>
+</settings>
