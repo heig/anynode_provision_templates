@@ -2,7 +2,7 @@
 <settings>
   <phone-settings>
 
-    <setting_server perm="R">http://{% $ANPROV_SIP_ADDRESS %}:8010/{mac}.xml</setting_server>
+    <setting_server perm="R">http://{% $ANPROV_SIP_HOSTNAME %}:8010/{mac}.xml</setting_server>
 
     <language perm="RW">{% $snom_language %}</language>
     <web_language perm="RW">{% $snom_language %}</web_language>
@@ -20,10 +20,10 @@
     <user_pass idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_AUTH_PASSWORD xml %}</user_pass>
     <user_pname idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_AUTH_USERNAME xml %}</user_pname>
     {% if ANPROV_SIP_UDP_PORT %}
-    <user_host idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $ANPROV_SIP_ADDRESS %}:{% $ANPROV_SIP_UDP_PORT xml %}</user_host>
+    <user_host idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $ANPROV_SIP_HOSTNAME %}:{% $ANPROV_SIP_UDP_PORT xml %}</user_host>
     {% end %}
 		{% elif ANPROV_SIP_TCP_PORT %}
-	<user_host idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $ANPROV_SIP_ADDRESS %}:{% $ANPROV_SIP_TCP_PORT xml %}</user_host>
+	<user_host idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $ANPROV_SIP_HOSTNAME %}:{% $ANPROV_SIP_TCP_PORT xml %}</user_host>
 	{% end %}
 
     {% end %}

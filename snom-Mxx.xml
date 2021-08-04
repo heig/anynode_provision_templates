@@ -1,0 +1,43 @@
+<!-- User Agent: Mozilla/69.0 (compatible; Snom M -->
+
+<?xml version="1.0" encoding="utf-8"?>
+<settings>
+	<phone-settings e="2">
+		<!--Global settings-->
+    	<setting_server perm="R">http://{% $ANPROV_SIP_HOSTNAME %}:8010/{mac}.xml</setting_server>
+		<timezone>{% $snom_timezone %}</timezone>
+    	<tone_scheme>{% $snom_tone_scheme %}</tone_scheme>
+		<ntp_server>192.168.175.108</ntp_server>
+		<http_user perm="">{% $snom_admin_user %}</http_user>
+    	<http_pass perm="">{% $snom_admin_web_pass %}</http_pass>
+
+		<!-- Server related settings-->
+		<srv_sip_server_alias idx="1">Anynode-Cluster</srv_sip_server_alias>
+		<user_host idx="1">{% $ANPROV_SIP_HOSTNAME %}:{% $ANPROV_SIP_UDP_PORT xml %}</user_host>
+		<user_srtp idx="1">off</user_srtp>
+		<srv_srtp_auth idx="1">off</srv_srtp_auth>
+		<!-- Handset related settings. subscr_dect_ipui has to be specified, otherwise the base will reset the
+connection to the handset every provisioning process-->
+		
+		{% for user in ANPROV_USERS %}
+			{% if user.ANPROV_SUB_ID %}
+
+				<subscr_dect_ipui idx="{% $user.ANPROV_SUB_ID xml %}">{% $snom_sub_ipei %}</subscr_dect_ipui>
+				<subscr_sip_hs_idx idx="{% $user.ANPROV_SUB_ID xml %}">1</subscr_sip_hs_idx>
+				<subscr_sip_ua_data_server_id idx="{% $user.ANPROV_SUB_ID xml %}">1</subscr_sip_ua_data_server_id>
+				<subscr_sip_ua_pref_outg_sip_id idx="{% $user.ANPROV_SUB_ID xml %}">1</subscr_sip_ua_pref_outg_sip_id>
+				<!-- Extension/account related settings-->
+				<user_active idx="{% $user.ANPROV_SUB_ID xml %}">on</user_active>
+				<user_realname idx="{% $user.ANPROV_SUB_ID xml %}">{% $user.ANPROV_DISPLAY_NAME xml %}</user_realname>
+				<user_name idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_AOR_USERNAME xml %}</user_name>
+			    <user_pass idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_AUTH_PASSWORD xml %}</user_pass>
+			    <user_pname idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_AUTH_USERNAME xml %}</user_pname>
+				<keyboard_lock_emergency idx="{% $user.ANPROV_SUB_ID xml %}">911 112 110 999 19222</keyboard_lock_emergency>
+
+		{% end %}
+			{% else %}
+			{% warning no sub-id set for account %}
+			{% end %}
+		{% end %}
+	</phone-settings>
+</settings>
