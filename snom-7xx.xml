@@ -14,16 +14,16 @@
     {% for user in ANPROV_USERS %}
 			{% if user.ANPROV_SUB_ID %}
 
-    <user_active idx="{% $user.ANPROV_USER_INDEX_1 xml %}" perm="RW">on</user_active>
-    <user_realname idx="{% $user.ANPROV_USER_INDEX_1 xml %}" perm="R">{% $user.ANPROV_DISPLAY_NAME xml %}</user_realname>
-    <user_name idx="{% $user.ANPROV_USER_INDEX_1 xml %}" perm="R">{% $user.ANPROV_AOR_USERNAME xml %}</user_name>
-    <user_pass idx="{% $user.ANPROV_USER_INDEX_1 xml %}" perm="R">{% $user.ANPROV_AUTH_PASSWORD xml %}</user_pass>
-    <user_pname idx="{% $user.ANPROV_USER_INDEX_1 xml %}" perm="R">{% $user.ANPROV_AUTH_USERNAME xml %}</user_pname>
+    <user_active idx="{% $user.ANPROV_SUB_ID xml %}" perm="RW">on</user_active>
+    <user_realname idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_DISPLAY_NAME xml %}</user_realname>
+    <user_name idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_AOR_USERNAME xml %}</user_name>
+    <user_pass idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_AUTH_PASSWORD xml %}</user_pass>
+    <user_pname idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $user.ANPROV_AUTH_USERNAME xml %}</user_pname>
     {% if ANPROV_SIP_UDP_PORT %}
-    <user_host idx="{% $user.ANPROV_USER_INDEX_1 xml %}" perm="R">{% $ANPROV_SIP_HOSTNAME %}:{% $ANPROV_SIP_UDP_PORT xml %}</user_host>
+    <user_host idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $ANPROV_SIP_HOSTNAME %}:{% $ANPROV_SIP_UDP_PORT xml %}</user_host>
     {% end %}
 		{% elif ANPROV_SIP_TCP_PORT %}
-	<user_host idx="{% $user.ANPROV_USER_INDEX_1 xml %}" perm="R">{% $ANPROV_SIP_HOSTNAME %}:{% $ANPROV_SIP_TCP_PORT xml %}</user_host>
+	<user_host idx="{% $user.ANPROV_SUB_ID xml %}" perm="R">{% $ANPROV_SIP_HOSTNAME %}:{% $ANPROV_SIP_TCP_PORT xml %}</user_host>
 	{% end %}
 
     {% end %}
