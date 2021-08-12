@@ -22,7 +22,7 @@ connection to the handset every provisioning process-->
 		{% for user in ANPROV_USERS %}
 			{% if user.ANPROV_SUB_ID %}
 
-				<subscr_dect_ipui idx="{% $user.ANPROV_SUB_ID xml %}">{% $snom_sub_ipei %}</subscr_dect_ipui>
+				<subscr_dect_ipui idx="{% $user.ANPROV_SUB_ID xml %}">{% $user.snom_sub_ipei %}</subscr_dect_ipui>
 				<subscr_sip_hs_idx idx="{% $user.ANPROV_SUB_ID xml %}">1</subscr_sip_hs_idx>
 				<subscr_sip_ua_data_server_id idx="{% $user.ANPROV_SUB_ID xml %}">1</subscr_sip_ua_data_server_id>
 				<subscr_sip_ua_pref_outg_sip_id idx="{% $user.ANPROV_SUB_ID xml %}">1</subscr_sip_ua_pref_outg_sip_id>
