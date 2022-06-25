@@ -5,20 +5,16 @@
 ##account.X.*:(T5XW/T54S/T48G/T48S/T46G/T46S/T29G/T46U/T48U: X ranges from 1 to 16. T52S/T42G/T42S/T43U: X ranges from 1 to 12. T41P/T41S/T27P/T27G/T41U/T42U: X ranges from 1 to 6. T40P/T40G/T23P/T23G: X ranges from 1 to 3. T21(P) E2: X ranges from 1 to 2.)##
 
 #######################################################################################
-##                                   Transfer                                        ##       
+##                                   System                                          ##       
 #######################################################################################
-#account.1.phone_setting.call_appearance.transfer_via_new_linekey=
 
+static.security.user_name.user=customer
+static.security.user_password=customer:customerReadonly
+static.security.user_password=admin:myAdminPassword
 
-#######################################################################################
-##                          Call Configuration                                       ##       
-#######################################################################################
-#account.1.music_server_uri=
-#account.1.music_on_hold_type=
-#account.1.auto_label.rule=
-#account.1.auto_label.enable=
-#account.1.number_of_linekey=
-#account.1.phone_setting.call_appearance.calls_per_linekey=
+local_time.ntp_server1=de.pool.ntp.org
+local_time.time_zone=+1
+local_time.time_zone_name=Germany(Berlin)
 
 
 ################################################################
@@ -34,7 +30,7 @@ static.sip.nat_stun.port=3478
 ################################################################
 {% for user in ANPROV_USERS %}
 {% if user.ANPROV_SUB_ID %}
-account.{% $user.ANPROV_SUB_ID xml %}.enable=true
+account.{% $user.ANPROV_SUB_ID xml %}.enable=1
 account.{% $user.ANPROV_SUB_ID xml %}.label={% $user.ANPROV_DISPLAY_NAME xml %}
 account.{% $user.ANPROV_SUB_ID xml %}.display_name={% $user.ANPROV_DISPLAY_NAME xml %}
 account.{% $user.ANPROV_SUB_ID xml %}.auth_name={% $user.ANPROV_AUTH_USERNAME xml %}
@@ -65,6 +61,23 @@ account.{% $user.ANPROV_SUB_ID xml %}.nat.nat_traversal=1
 #account.1.outbound_proxy.1.address=
 #account.1.outbound_proxy.1.port=
 
+
+
+#######################################################################################
+##                                   Transfer                                        ##       
+#######################################################################################
+#account.1.phone_setting.call_appearance.transfer_via_new_linekey=
+
+
+#######################################################################################
+##                          Call Configuration                                       ##       
+#######################################################################################
+#account.1.music_server_uri=
+#account.1.music_on_hold_type=
+#account.1.auto_label.rule=
+#account.1.auto_label.enable=
+#account.1.number_of_linekey=
+#account.1.phone_setting.call_appearance.calls_per_linekey=
 
 ################################################################
 #                      Account Basic                          ##
